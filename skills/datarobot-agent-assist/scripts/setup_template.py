@@ -94,12 +94,12 @@ def initialize_pulumi(
     if env_file.exists():
         try:
             passphrase = read_env_variable(env_file, "PULUMI_CONFIG_PASSPHRASE")
-            print(f"Using PULUMI_CONFIG_PASSPHRASE from .env file")
+            print("Using PULUMI_CONFIG_PASSPHRASE from .env file")
         except ValueError:
             # Variable not in .env, use the provided passphrase or generate one
             if not passphrase:
                 passphrase = generate_random_secret()
-            print(f"PULUMI_CONFIG_PASSPHRASE not found in .env, using generated passphrase")
+            print("PULUMI_CONFIG_PASSPHRASE not found in .env, using generated passphrase")
 
     # Generate random string for stack name
     random_suffix = generate_random_secret(8)
