@@ -1,3 +1,6 @@
+# Copyright (c) 2026 DataRobot, Inc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Validate plugin/marketplace definitions for Gemini, Claude, and Cursor:
 - Gemini: structural checks on gemini-extension.json entries

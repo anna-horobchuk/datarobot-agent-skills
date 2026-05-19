@@ -1,3 +1,6 @@
+# Copyright (c) 2026 DataRobot, Inc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Validate DataRobot skill folders:
 1. All skill folders must start with 'datarobot-'
