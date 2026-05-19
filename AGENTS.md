@@ -40,13 +40,21 @@ properly manage the context window itself the human should edit the SKILLs.md. A
 other references within a skill is perfectly acceptable.
 
 This repo is organized using GitHub Code Owners. Please ensure all new skills developed have a proper github team
-or person for the new skill added
+or person for the new skill added.
 
 
 ## Workflow
 
+### Basic workflow
+
 We use taskfile.dev for task running in this repo. All changes must be validated regularly with `task lint` that will
 check that all copyrights, Skills.md files are structured, naming conventions are obeyed, Python files are properly formatted, linters are executed, etc. It is the way to validate any changes.
+
+Install and test the skills after prompting the user for the trigger phrase you expect
+
+### Plugin version management
+
+Several plugins: Claude (.claude/*.json), Cursor (.cursor/plugin.json), Gemini (gemini-extension.json) have version strings. Be sure to bump them appropritately depending on the change using SemVer rules along with the change.
 
 
 ## SDK usage
