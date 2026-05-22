@@ -1,5 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin"
-import { cpSync, mkdirSync, readdirSync } from "fs"
+import { cpSync, existsSync, mkdirSync, readdirSync } from "fs"
+import { homedir } from "os"
 import { dirname, join, resolve } from "path"
 import { fileURLToPath } from "url"
 
@@ -8,8 +9,10 @@ const BUNDLED_SKILLS = resolve(__dirname, "..", "skills")
 const BUNDLED_THEME = resolve(__dirname, "themes", "datarobot.json")
 
 function getConfigDir(): string {
-  const xdg = process.env.XDG_CONFIG_HOME
-  return xdg || join(process.env.HOME || "~", ".config")
+  if (process.env.XDG_CONFIG_HOME) {
+    return process.env.XDG_CONFIG_HOME
+  }
+  return join(homedir(), ".config")
 }
 
 function installSkills(configDir: string): number {
@@ -28,6 +31,9 @@ function installSkills(configDir: string): number {
 }
 
 function installTheme(configDir: string): boolean {
+  if (!existsSync(BUNDLED_THEME)) {
+    return false
+  }
   const themesDir = join(configDir, "opencode", "themes")
   const target = join(themesDir, "datarobot.json")
   mkdirSync(themesDir, { recursive: true })
