@@ -1,6 +1,6 @@
 # DataRobot Application Templates CI/CD Skill
 
-This skill provides comprehensive guidance for setting up production-grade CI/CD pipelines for DataRobot application templates.
+A skill that provides comprehensive guidance for setting up production-grade CI/CD pipelines for DataRobot application templates.
 
 ## Overview
 
