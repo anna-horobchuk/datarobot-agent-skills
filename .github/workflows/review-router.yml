@@ -1,0 +1,32 @@
+# SECURITY: Use "pull_request" only — NEVER "pull_request_target".
+# pull_request does not pass secrets to fork PRs (safe).
+# pull_request_target does pass secrets to fork PRs (unsafe — credentials leak risk).
+---
+name: Review Router
+
+on:
+  pull_request:
+    types: [labeled]
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.REVIEW_ROUTER_APP_ID }}
+          private-key: ${{ secrets.REVIEW_ROUTER_APP_PRIVATE_KEY }}
+
+      - name: Run Review Router
+        uses: datarobot-oss/review-router@v1
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          slack-token: ${{ secrets.SLACK_BOT_TOKEN }}
